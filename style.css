@@ -10,19 +10,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50vh;
 }
 
 canvas {
     background-color: white;
-    width: 50vh;
-    height: 50vh;
-}
-
-.flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Materialize Color */
