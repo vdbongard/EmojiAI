@@ -50,10 +50,12 @@ function test () {
 
 function train1 () {
   nn.addTrainingData(cells.slice(0), 0)
+  clearCanvas()
 }
 
 function train2 () {
   nn.addTrainingData(cells.slice(0), 1)
+  clearCanvas()
 }
 
 function train () {
@@ -77,7 +79,7 @@ function sigmoid (x, derivative) {
 class MyNeuralNetwork {
   constructor () {
     this.inputNeurons = gridCount * gridCount
-    this.hiddenNeurons = 6
+    this.hiddenNeurons = 80
     this.outputNeurons = 2
     this.weights0 = []
     this.weights1 = []
@@ -110,14 +112,14 @@ class MyNeuralNetwork {
   }
 
   train () {
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 1000; i++) {
       let l0 = this.input
       let l1 = sigmoid(numeric.dot(l0, this.weights0))
       let l2 = sigmoid(numeric.dot(l1, this.weights1))
 
       const l2_error = numeric.sub(this.output, l2)
 
-      if ((i % 1000) === 0) {
+      if ((i % 100) === 0) {
         let sum_avg = 0
         for (let j = 0; j < l2_error.length; j ++) {
           const abs = numeric.abs(l2_error[j])
