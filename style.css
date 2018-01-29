@@ -12,6 +12,17 @@ body {
     justify-content: center;
 }
 
+.btn {
+    margin: 0.5rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 canvas {
     background-color: white;
     margin-bottom: 1rem;

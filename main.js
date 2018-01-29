@@ -4,7 +4,7 @@ ctx.fillStyle = 'rgba(0,0,0,0.87)'
 
 const gridCount = 32
 
-const canvasSize = canvas.parentElement.clientWidth - (canvas.parentElement.clientWidth % gridCount)
+const canvasSize = Math.min(500, canvas.parentElement.clientWidth - (canvas.parentElement.clientWidth % gridCount))
 canvas.width = canvas.height = canvasSize
 
 const cellSize = canvasSize / gridCount
@@ -56,6 +56,10 @@ function train2 () {
   nn.addTrainingData(cells.slice(0), 1)
 }
 
+function train () {
+  nn.train()
+}
+
 function clearCanvas () {
   cells.fill(0)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -103,19 +107,17 @@ class MyNeuralNetwork {
     } else if (output === 1) {
       this.output.push([0, 1])
     }
-
-    this.train()
   }
 
   train () {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 10000; i++) {
       let l0 = this.input
       let l1 = sigmoid(numeric.dot(l0, this.weights0))
       let l2 = sigmoid(numeric.dot(l1, this.weights1))
 
       const l2_error = numeric.sub(this.output, l2)
 
-      if ((i % 100) === 0) {
+      if ((i % 1000) === 0) {
         let sum_avg = 0
         for (let j = 0; j < l2_error.length; j ++) {
           const abs = numeric.abs(l2_error[j])
