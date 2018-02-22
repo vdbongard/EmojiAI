@@ -1,0 +1,73 @@
+body {
+    background-color: #eeeeee;
+}
+
+.content .row {
+    margin: 2rem 0;
+}
+
+.emoji {
+    font-size: 60px;
+}
+
+.btn {
+    margin: 0.5rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+canvas {
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+#trainingSampleButtons .btn {
+    background-color: transparent;
+    padding: 0;
+    margin-left: 0;
+    box-shadow: none;
+    height: auto;
+    line-height: inherit;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* Materialize Color */
+
+.switch label input[type=checkbox]:checked + .lever:after {
+    background-color: #2196F3;
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+    background-color: #9ed1fa;
+}
+
+input[type=number]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #2196F3;
+    box-shadow: 0 1px 0 0 #2196F3;
+}
+
+input[type=checkbox]:checked:not(:disabled) ~ .lever:active::before, input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before,
+.switch label .lever:before {
+    background-color: rgba(158, 209, 250, 0.15);
+}
+
+.setting .dropdown-content li > a, .dropdown-content li > span {
+    color: #2196F3
+}
+
+.setting input[type="checkbox"]:checked + label:before {
+    border-right-color: #2196F3;
+    border-bottom-color: #2196F3;
+}
+
+.waves-effect.waves-blue .waves-ripple {
+    background-color: rgba(33, 150, 243, 0.65);
+}
