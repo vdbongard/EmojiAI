@@ -62,7 +62,7 @@ function sigmoid (x, derivative) {
 class MyNeuralNetwork {
   constructor () {
     this.inputNeurons = gridCount * gridCount
-    this.hiddenNeurons = 7
+    this.hiddenNeurons = 20
     this.outputNeurons = 7
     this.weights0 = []
     this.weights1 = []
@@ -120,8 +120,8 @@ class MyNeuralNetwork {
 
       const l1_delta = numeric.dot(l1_error, sigmoid(l1, true))
 
-      this.weights1 = numeric.add(this.weights1, numeric.dot(numeric.transpose(l1), l2_delta))
-      this.weights0 = numeric.add(this.weights0, numeric.dot(numeric.transpose(l0), l1_delta))
+      this.weights1 = numeric.add(this.weights1, numeric.mul(0.1, numeric.dot(numeric.transpose(l1), l2_delta)))
+      this.weights0 = numeric.add(this.weights0, numeric.mul(0.1, numeric.dot(numeric.transpose(l0), l1_delta)))
 
     }
 
