@@ -91,12 +91,12 @@ activation = logistic
 class MyNeuralNetwork {
   constructor () {
     this.inputNeurons = gridCount * gridCount
-    this.hiddenNeurons = 15
+    this.hiddenNeurons = 14
     this.outputNeurons = 7
-    this.learningRate = 0.01
-    this.iterations = 2001
+    this.learningRate = 0.02
+    this.iterations = 5001
     this.errorThreshold = 0.01
-    this.momentum = 0.75
+    this.momentum = 0.1
     this.weights0 = []
     this.weights1 = []
     this.input = []
@@ -148,7 +148,7 @@ class MyNeuralNetwork {
         console.log('Error: ', avg, ' Iteration: ', i)
 
         if (avg < this.errorThreshold) {
-          return;
+          break;
         }
       }
 
