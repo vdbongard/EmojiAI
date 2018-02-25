@@ -13,6 +13,18 @@ MongoClient.connect('mongodb://emoji-ai:mongodatabasepasswordemojiai@ds245238.ml
 
   db = client.db('emoji-ai')
 
+  db.collection('emojis').find().toArray((err, docs) => {
+    console.log('Training ' + docs.length + ' emojis.')
+
+    nn = new MyNeuralNetwork()
+
+    for (let emoji of docs) {
+      nn.addTrainingData(emoji.input, emoji.output)
+    }
+
+    nn.train()
+  })
+
   app.listen(3000, function () {
     console.log('listening on 3000')
   })
@@ -62,8 +74,9 @@ function sigmoid (x, derivative) {
 class MyNeuralNetwork {
   constructor () {
     this.inputNeurons = gridCount * gridCount
-    this.hiddenNeurons = 20
+    this.hiddenNeurons = 15
     this.outputNeurons = 7
+    this.learningRate = 0.1
     this.weights0 = []
     this.weights1 = []
     this.input = []
@@ -120,8 +133,8 @@ class MyNeuralNetwork {
 
       const l1_delta = numeric.dot(l1_error, sigmoid(l1, true))
 
-      this.weights1 = numeric.add(this.weights1, numeric.mul(0.1, numeric.dot(numeric.transpose(l1), l2_delta)))
-      this.weights0 = numeric.add(this.weights0, numeric.mul(0.1, numeric.dot(numeric.transpose(l0), l1_delta)))
+      this.weights1 = numeric.add(this.weights1, numeric.mul(this.learningRate, numeric.dot(numeric.transpose(l1), l2_delta)))
+      this.weights0 = numeric.add(this.weights0, numeric.mul(this.learningRate, numeric.dot(numeric.transpose(l0), l1_delta)))
 
     }
 
