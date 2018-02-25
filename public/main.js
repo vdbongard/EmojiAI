@@ -34,14 +34,28 @@ const cells = new Array(gridCount * gridCount).fill(0)
 
 let down = false
 
+let clickX = [];
+let clickY = [];
+let clickDrag = [];
+
 window.addEventListener('pointerdown', e => {
-  drawRect(e)
+  const x = e.clientX + window.scrollX - canvas.offsetLeft
+  const y = e.clientY + window.scrollY - canvas.offsetTop
+
   down = true
+  setRect(x, y)
+  addClick(x, y)
+  redraw()
 })
 
 window.addEventListener('pointermove', e => {
   if (down) {
-    drawRect(e)
+    const x = e.clientX + window.scrollX - canvas.offsetLeft
+    const y = e.clientY + window.scrollY - canvas.offsetTop
+
+    setRect(x, y)
+    addClick(x, y)
+    redraw()
   }
 })
 
@@ -49,17 +63,37 @@ window.addEventListener('pointerup', () => {
   down = false
 })
 
-function drawRect (e) {
-  const x = e.clientX + window.scrollX - canvas.offsetLeft
-  const y = e.clientY + window.scrollY - canvas.offsetTop
+function addClick (x, y, dragging) {
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+}
 
+function redraw () {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 20;
+
+  for(let i=0; i < clickX.length; i++) {
+    ctx.beginPath();
+    if(clickDrag[i] && i){
+      ctx.moveTo(clickX[i-1], clickY[i-1]);
+    }else{
+      ctx.moveTo(clickX[i]-1, clickY[i]);
+    }
+    ctx.lineTo(clickX[i], clickY[i]);
+    ctx.closePath();
+    ctx.stroke();
+  }
+}
+
+function setRect (x, y) {
   if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
     const cellNumberX = Math.floor(x / cellSize)
     const cellNumberY = Math.floor(y / cellSize)
 
     if (!cells[cellNumberX * gridCount + cellNumberY]) {
-      ctx.fillRect(cellNumberX * cellSize, cellNumberY * cellSize, cellSize, cellSize)
-
       cells[cellNumberX * gridCount + cellNumberY] = 1
     }
   }
@@ -95,6 +129,9 @@ function train () {
 function clearCanvas () {
   cells.fill(0)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  clickX = [];
+  clickY = [];
+  clickDrag = [];
 }
 
 function post (url, data, cb) {
