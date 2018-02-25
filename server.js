@@ -93,10 +93,10 @@ class MyNeuralNetwork {
     this.inputNeurons = gridCount * gridCount
     this.hiddenNeurons = 14
     this.outputNeurons = 7
-    this.learningRate = 0.02
+    this.learningRate = 0.01
     this.iterations = 5001
     this.errorThreshold = 0.01
-    this.momentum = 0.1
+    this.momentum = 0
     this.weights0 = []
     this.weights1 = []
     this.input = []
