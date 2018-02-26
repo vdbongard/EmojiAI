@@ -37,6 +37,11 @@ canvas {
 
 p {
     font-size: 20px;
+    margin: 3rem 0;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
 }
 
 /* Materialize Color */

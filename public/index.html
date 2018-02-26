@@ -24,31 +24,31 @@
 
 <div class="container content">
     <div class="row">
-        <div class="col s12">
-            <h3>Draw an emoji</h3>
-            <canvas id="main" style="user-select: none"></canvas>
-        </div>
-
-        <div class="col s12">
-            <a class="waves-effect waves-light btn" onclick="clearCanvas()">clear</a>
-            <a class="waves-effect waves-light btn" onclick="test()">test</a>
-            <a class="waves-effect waves-light btn" onclick="train()">train</a>
-        </div>
-
-        <div class="col s12">
-            <h3>Prediction:</h3>
-            <div id="predictionWrapper">
-                <p>Please press the test button above!</p>
+        <div class="col s12 xl6">
+            <div>
+                <h3>Draw an emoji</h3>
+                <canvas id="main" style="user-select: none"></canvas>
+            </div>
+            <div>
+                <a class="waves-effect waves-light btn" onclick="clearCanvas()">clear</a>
+                <a class="waves-effect waves-light btn" onclick="test()">test</a>
+                <a class="waves-effect waves-light btn" onclick="train()">train</a>
             </div>
         </div>
 
-        <div class="col s12">
-            <h3>Add training sample:</h3>
-            <div id="trainingSampleButtons">
-
+        <div class="col s12 xl6">
+            <div class="mb-4">
+                <h3>Prediction:</h3>
+                <div id="predictionWrapper">
+                    <p>Please press the test button above!</p>
+                </div>
+            </div>
+            <div>
+                <h3>Add training sample:</h3>
+                <div id="trainingSampleButtons">
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 
